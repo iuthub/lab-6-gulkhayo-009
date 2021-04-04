@@ -1,3 +1,2 @@
-Student info
-name: Gulkhayo Akhadjonova
+name: Gulkhayo Akhadjonova;
 id: U1910009
