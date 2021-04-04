@@ -13,6 +13,13 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 	$replaceText=$_POST["replaceText"];
 
 	$replacedText=preg_replace($pattern, $replaceText, $text);
+$contains=preg_match('/(.*)(&text)(.*)/', $pattern);
+$email=preg_match('/(.*)(@)(.*)/', $text);
+$phone=preg_match('/(\+998-)[0-9]{2}[0-9]{7}/', $text);
+$removeWhitespace=preg_replace('/\s+/', '', $text);
+$removeNonnumeric=preg_replace("/[^0-9,.]/", "", $text);
+$removeNewline=preg_replace('/\s+/', ' ', trim($text));
+$extractText=preg_match('#\[(.*?)\]#', $text, $replacedTexts);
 
 	if(preg_match($pattern, $text)) {
 						$match="Match!";
@@ -22,7 +29,6 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 }
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 			<dt>Replaced Text</dt>
 			<dd> <code><?=	$replacedText ?></code></dd>
 
-			<dt>&nbsp;</dt>
+			<dt>&nbsp;&nbsp;</dt>
 			<dd><input type="submit" value="Check"></dd>
 		</dl>
 
